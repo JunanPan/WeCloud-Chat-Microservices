@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-profile-deployment
+  labels:
+    app: spring-profile-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: spring-profile-service
+  template:
+    metadata:
+      labels:
+        app: spring-profile-service
+    spec:
+      containers:
+      - name: profile-service
+        image: task5.azurecr.io/task5-profile-service:v1
+        ports:
+        - containerPort: 8080
+        resources:
+          # You must specify requests for CPU to autoscale
+          # based on CPU utilization
+          requests:
+            cpu: "200m"
+        envFrom:
+        - configMapRef:
+            name: spring-profile-config
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: azure-vote-front-hpa
+spec:
+  maxReplicas: 10 # define max replica count
+  minReplicas: 1  # define min replica count
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: spring-profile-deployment
+  targetCPUUtilizationPercentage: 50 # target CPU utilization
