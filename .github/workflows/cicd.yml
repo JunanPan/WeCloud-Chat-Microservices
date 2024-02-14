@@ -145,7 +145,7 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           project_id: ${{ env.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       # TODO: Setup gcloud CLI
       # Document: set up gcloud CLI https://github.com/marketplace/actions/set-up-gcloud-cloud-sdk-environment
@@ -154,7 +154,7 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: ${{ env.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
       # TODO: Complete the bash script in `run` to configure docker with gcloud CLI for authentication
       # Document: https://cloud.google.com/sdk/gcloud/reference/auth/configure-docker
@@ -261,7 +261,7 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           project_id: ${{ env.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
       # TODO: Get the GKE credentials so that we can deploy to the cluster
       # Document: Get GKE Credentials https://github.com/marketplace/actions/get-gke-credentials
       - name: Get GKE Credentials

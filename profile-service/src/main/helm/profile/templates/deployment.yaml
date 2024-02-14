@@ -5,7 +5,7 @@ metadata:
   labels:
     app: spring-profile-service
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: spring-profile-service
