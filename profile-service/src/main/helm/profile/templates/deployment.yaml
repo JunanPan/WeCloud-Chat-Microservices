@@ -5,7 +5,7 @@ metadata:
   labels:
     app: spring-profile-service
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: spring-profile-service
@@ -17,7 +17,7 @@ spec:
       containers:
       - name: profile-service
         image: gcr.io/gcp-docker-kubernetes-414008/task3-service:task3-service
-        ports:
+        ports: 
         - containerPort: 8080
         resources:
           # You must specify requests for CPU to autoscale

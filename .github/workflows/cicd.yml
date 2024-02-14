@@ -278,7 +278,7 @@ jobs:
           (needs.build-push-image.result == 'skipped' && needs.check-changed-files.outputs.profile-service-helm-any-changed == 'true')
         run: |
           # TODO
-          helm upgrade --install profile-service profile-service/src/main/helm/profile
+          helm upgrade --install profile profile-service/src/main/helm/profile
 
       # TODO: Deploy the new login helm chart to GKE cluster with helm with the bash script in `run`
       - name: Deploy login-service to the cluster with helm
@@ -287,7 +287,7 @@ jobs:
           (needs.build-push-image.result == 'skipped' && needs.check-changed-files.outputs.login-service-helm-any-changed == 'true')
         run: |
           # TODO
-          helm upgrade --install login-service login-service/src/main/helm/login
+          helm upgrade --install login login-service/src/main/helm/login
       # TODO: Deploy the new chat helm chart to GKE cluster with helm with the bash script in `run`
       - name: Deploy chat-service to the cluster with helm
         if: | 
@@ -295,7 +295,7 @@ jobs:
           (needs.build-push-image.result == 'skipped' && needs.check-changed-files.outputs.chat-service-helm-any-changed == 'true')
         run: |
           # TODO
-          helm upgrade --install chat-service chat-service/src/main/helm/chat 
+          helm upgrade --install chat chat-service/src/main/helm/chat 
 
   deploy-service-to-az:
     runs-on: ubuntu-latest
@@ -355,7 +355,7 @@ jobs:
           (needs.build-push-image.result == 'skipped' && needs.check-changed-files.outputs.profile-service-helm-multi-cloud-any-changed == 'true') 
         run: |
           # TODO
-          helm upgrade --install profile-service profile-service/src/main/helm-multi-cloud/profile
+          helm upgrade --install profile profile-service/src/main/helm-multi-cloud/profile
       # TODO: Deploy the new login helm chart to AKS cluster with helm with the bash script in `run`
       - name: Deploy login-service to the cluster with helm
         if: | 
@@ -363,4 +363,4 @@ jobs:
           (needs.build-push-image.result == 'skipped' && needs.check-changed-files.outputs.login-service-helm-multi-cloud-any-changed == 'true')
         run: |
           # TODO
-          helm upgrade --install login-service login-service/src/main/helm-multi-cloud/login
+          helm upgrade --install login login-service/src/main/helm-multi-cloud/login
